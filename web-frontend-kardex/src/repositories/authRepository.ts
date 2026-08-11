@@ -20,7 +20,8 @@ export const authRepository = {
     const foundUser = users.find(
       (user) =>
         user.carnet === credentials.carnet &&
-        user.password === credentials.password
+        user.password === credentials.password &&
+        user.role === credentials.role
     );
 
 

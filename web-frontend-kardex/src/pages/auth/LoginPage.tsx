@@ -27,7 +27,7 @@ function LoginPage() {
 
 
     if (!user) {
-      setError("El carnet o la contraseña son incorrectos.");
+      setError("El CI, la contraseña o el rol seleccionado son incorrectos.");
       return;
     }
 
@@ -37,7 +37,7 @@ function LoginPage() {
 
 
   return (
-    <main>
+    <main className="login-page">
       <LoginForm
         error={error}
         onSubmit={handleLogin}
