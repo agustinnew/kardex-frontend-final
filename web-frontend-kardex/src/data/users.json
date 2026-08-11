@@ -1,40 +1,22 @@
 [
   {
-    "id": "user-1",
-    "nombre": "Ana",
-    "apellidoPaterno": "García",
-    "apellidoMaterno": "López",
-    "CI": "1000001",
-    "contraseña": "admin123",
-    "rol": "ADMIN",
-    "name": "Ana García López",
-    "carnet": "1000001",
+    "id": "admin-1",
+    "name": "Administrador Don Bosco",
+    "carnet": "1234567",
     "password": "admin123",
-    "role": "ADMIN"
+    "role": "ADMINISTRADOR"
   },
   {
-    "id": "user-2",
-    "nombre": "Carlos",
-    "apellidoPaterno": "Mamani",
-    "apellidoMaterno": "Quispe",
-    "CI": "1000002",
-    "contraseña": "profesor123",
-    "rol": "PROFESOR",
-    "name": "Carlos Mamani Quispe",
-    "carnet": "1000002",
+    "id": "profesor-1",
+    "name": "Profesor Don Bosco",
+    "carnet": "2345678",
     "password": "profesor123",
     "role": "PROFESOR"
   },
   {
-    "id": "user-3",
-    "nombre": "Lucía",
-    "apellidoPaterno": "Vargas",
-    "apellidoMaterno": "Rojas",
-    "CI": "1000003",
-    "contraseña": "alumno123",
-    "rol": "ALUMNO",
-    "name": "Lucía Vargas Rojas",
-    "carnet": "1000003",
+    "id": "alumno-1",
+    "name": "Alumno Don Bosco",
+    "carnet": "7654321",
     "password": "alumno123",
     "role": "ALUMNO"
   }
