@@ -10,28 +10,21 @@ interface LoginFormProps {
 const roleOptions: Array<{ label: string; value: UserRole }> = [
   { label: "Profesor", value: "PROFESOR" },
   { label: "Alumno", value: "ALUMNO" },
-  { label: "Administrador", value: "ADMINISTRADOR" },
+  { label: "Administrador", value: "ADMIN" },
 ];
 
 function LoginForm({ error, onSubmit }: LoginFormProps) {
-  const [carnet, setCarnet] = useState("");
+  const [CI, setCI] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState<UserRole>("ALUMNO");
+  const [rol, setRol] = useState<UserRole>("ALUMNO");
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
+    const normalizedCI = CI.trim();
 
-    const normalizedCarnet = carnet.trim();
+    if (!normalizedCI || !password || !rol) return;
 
-    if (!normalizedCarnet || !password || !role) {
-      return;
-    }
-
-    onSubmit({
-      carnet: normalizedCarnet,
-      password,
-      role,
-    });
+    onSubmit({ CI: normalizedCI, password, rol });
   };
 
   return (
@@ -52,10 +45,10 @@ function LoginForm({ error, onSubmit }: LoginFormProps) {
           <label key={option.value} className="login-card__role-option">
             <input
               type="radio"
-              name="role"
+              name="rol"
               value={option.value}
-              checked={role === option.value}
-              onChange={() => setRole(option.value)}
+              checked={rol === option.value}
+              onChange={() => setRol(option.value)}
             />
             <span>{option.label}</span>
           </label>
@@ -63,13 +56,13 @@ function LoginForm({ error, onSubmit }: LoginFormProps) {
       </fieldset>
 
       <div className="login-card__field">
-        <label htmlFor="carnet">CI</label>
+        <label htmlFor="CI">CI</label>
         <input
-          id="carnet"
-          name="carnet"
+          id="CI"
+          name="CI"
           type="text"
-          value={carnet}
-          onChange={(event) => setCarnet(event.target.value)}
+          value={CI}
+          onChange={(event) => setCI(event.target.value)}
           placeholder="Ingrese su CI"
           autoComplete="username"
           required
@@ -90,12 +83,7 @@ function LoginForm({ error, onSubmit }: LoginFormProps) {
         />
       </div>
 
-      {error && (
-        <p className="login-card__error" role="alert" aria-live="polite">
-          {error}
-        </p>
-      )}
-
+      {error && <p className="login-card__error" role="alert">{error}</p>}
       <button type="submit">Ingresar</button>
     </form>
   );
