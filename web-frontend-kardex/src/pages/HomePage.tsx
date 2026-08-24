@@ -48,7 +48,20 @@ function HomePage() {
             <div>
               <span>Datos del estudiante</span>
               <h1>{nombreCompleto}</h1>
-              <p>CI: {user.CI} · Rol: Alumno</p>
+              <dl className="student-profile__details">
+                <div>
+                  <dt>CI</dt>
+                  <dd>{user.CI}</dd>
+                </div>
+                <div>
+                  <dt>Rol</dt>
+                  <dd>Alumno</dd>
+                </div>
+                <div>
+                  <dt>Institución</dt>
+                  <dd>Colegio Don Bosco Sucre</dd>
+                </div>
+              </dl>
             </div>
           </section>
 

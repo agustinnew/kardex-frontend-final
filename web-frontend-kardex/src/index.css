@@ -38,19 +38,20 @@ main { min-height: 100vh; }
 .student-profile span, .student-kardex__eyebrow { color:#0b3d91; font-size:.78rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em; }
 .student-profile h1 { margin:.25rem 0; color:#082a66; font-size:clamp(1.35rem,3vw,2rem); }
 .student-profile p { margin:0; color:#5d6b80; }
+.student-profile__details { display:grid; grid-template-columns:repeat(3,minmax(140px,1fr)); gap:.75rem; margin:1rem 0 0; }
+.student-profile__details div { border:1px solid #e5ebf4; border-radius:16px; padding:.8rem 1rem; background:#f8fbff; }
+.student-profile__details dt { color:#6a7890; font-size:.74rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+.student-profile__details dd { margin:.25rem 0 0; color:#10233f; font-weight:800; }
 .student-kardex { margin-top:1.5rem; }
 .student-kardex__header { display:flex; justify-content:space-between; align-items:end; gap:1rem; margin-bottom:1rem; }
 .student-kardex__header h2 { margin:.25rem 0 0; color:#082a66; }
 .student-kardex__header p { margin:0; color:#66758b; }
-.student-kardex__tabs { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:1rem; }
-.student-kardex__tab { display:flex; align-items:center; gap:.75rem; min-height:76px; padding:1rem; border:2px solid #d7e0ef; border-radius:20px; background:white; color:#0b3d91; cursor:pointer; font-weight:800; text-align:left; box-shadow:0 8px 20px rgba(8,42,102,.05); }
-.student-kardex__tab span { display:grid; width:40px; height:40px; place-items:center; border-radius:12px; background:#e8eef8; }
-.student-kardex__tab.is-active { border-color:#f7c600; background:#0b3d91; color:white; box-shadow:0 14px 28px rgba(11,61,145,.2); }
-.student-kardex__tab.is-active span { background:#f7c600; color:#082a66; }
-.student-kardex__table-card { overflow:hidden; border-radius:24px; background:white; box-shadow:0 12px 35px rgba(8,42,102,.08); }
-.student-kardex__table-title { display:flex; justify-content:space-between; align-items:center; padding:1.25rem 1.5rem; border-bottom:1px solid #e5ebf4; }
-.student-kardex__table-title h3 { margin:0; color:#082a66; }
-.student-kardex__table-title span { color:#66758b; font-size:.9rem; }
+.student-kardex__cards { display:grid; gap:1.25rem; }
+.student-kardex__table-card { overflow:hidden; border:1px solid #e5ebf4; border-radius:24px; background:white; box-shadow:0 12px 35px rgba(8,42,102,.08); }
+.student-kardex__table-title { display:flex; justify-content:space-between; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border-bottom:1px solid #e5ebf4; background:linear-gradient(135deg,#fff,#f7faff); }
+.student-kardex__table-title h3 { margin:.2rem 0 0; color:#082a66; }
+.student-kardex__table-title span { color:#0b3d91; font-size:.78rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+.student-kardex__table-title strong { flex:0 0 auto; border-radius:999px; padding:.45rem .8rem; background:#e8eef8; color:#0b3d91; font-size:.85rem; }
 .student-kardex__table-wrapper { overflow-x:auto; }
 .student-kardex table { width:100%; border-collapse:collapse; }
 .student-kardex th { padding:1rem 1.5rem; background:#f4f7fb; color:#53647b; font-size:.8rem; text-align:left; text-transform:uppercase; }
@@ -64,7 +65,7 @@ main { min-height: 100vh; }
   .app-header { align-items:flex-start; flex-direction:column; }
   .app-header__user { width:100%; justify-content:space-between; }
   .student-kardex__header { align-items:flex-start; flex-direction:column; }
-  .student-kardex__tabs { grid-template-columns:1fr; }
+  .student-profile__details { grid-template-columns:1fr; }
 }
 @media (max-width:420px) {
   .login-card { padding:1.35rem; }
