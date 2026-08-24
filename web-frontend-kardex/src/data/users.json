@@ -1,23 +1,29 @@
 [
   {
     "id": "admin-1",
-    "name": "Administrador Don Bosco",
-    "carnet": "1234567",
     "password": "admin123",
-    "role": "ADMINISTRADOR"
+    "nombre": "Administrador",
+    "apellidoPaterno": "Don Bosco",
+    "apellidoMaterno": "Sucre",
+    "CI": "1234567",
+    "rol": "ADMIN"
   },
   {
     "id": "profesor-1",
-    "name": "Profesor Don Bosco",
-    "carnet": "2345678",
     "password": "profesor123",
-    "role": "PROFESOR"
+    "nombre": "Profesor",
+    "apellidoPaterno": "Don Bosco",
+    "apellidoMaterno": "Sucre",
+    "CI": "2345678",
+    "rol": "PROFESOR"
   },
   {
     "id": "alumno-1",
-    "name": "Alumno Don Bosco",
-    "carnet": "7654321",
     "password": "alumno123",
-    "role": "ALUMNO"
+    "nombre": "Alumno",
+    "apellidoPaterno": "Don Bosco",
+    "apellidoMaterno": "Sucre",
+    "CI": "7654321",
+    "rol": "ALUMNO"
   }
 ]
