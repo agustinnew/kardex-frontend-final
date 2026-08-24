@@ -25,5 +25,23 @@
     "apellidoMaterno": "Sucre",
     "CI": "7654321",
     "rol": "ALUMNO"
+  },
+  {
+    "id": "alumno-2",
+    "password": "alumno123",
+    "nombre": "María",
+    "apellidoPaterno": "Fernández",
+    "apellidoMaterno": "Rojas",
+    "CI": "8765432",
+    "rol": "ALUMNO"
+  },
+  {
+    "id": "alumno-3",
+    "password": "alumno123",
+    "nombre": "Carlos",
+    "apellidoPaterno": "Gutiérrez",
+    "apellidoMaterno": "Pérez",
+    "CI": "9876543",
+    "rol": "ALUMNO"
   }
 ]
