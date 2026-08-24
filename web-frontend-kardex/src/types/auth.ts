@@ -1,10 +1,12 @@
-export type UserRole = "ADMINISTRADOR" | "PROFESOR" | "ALUMNO";
+export type UserRole = "ADMIN" | "PROFESOR" | "ALUMNO";
 
 export interface User {
   id: string;
-  name: string;
-  carnet: string;
-  role: UserRole;
+  nombre: string;
+  apellidoPaterno: string;
+  apellidoMaterno: string;
+  CI: string;
+  rol: UserRole;
 }
 
 export interface UserRecord extends User {
@@ -12,7 +14,7 @@ export interface UserRecord extends User {
 }
 
 export interface LoginCredentials {
-  carnet: string;
+  CI: string;
   password: string;
-  role: UserRole;
+  rol: UserRole;
 }
