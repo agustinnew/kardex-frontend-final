@@ -1,7 +1,8 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import type { FormEvent } from "react";
 import kardexData from "../../data/kardex.json";
 
-interface KardexRecord {
+export interface KardexRecord {
   id: string;
   CI: string;
   trimestre: number;
@@ -19,29 +20,140 @@ const trimestres = [
 
 interface StudentKardexProps {
   CI: string;
+  title?: string;
+  description?: string;
+  records?: KardexRecord[];
+  canAddAbsences?: boolean;
+  onAddAbsence?: (record: Omit<KardexRecord, "id" | "CI">) => void;
 }
 
-function StudentKardex({ CI }: StudentKardexProps) {
+const initialForm = {
+  trimestre: 1,
+  tipoFalta: "Leve",
+  descripcion: "",
+  materia: "",
+  fecha: "",
+};
+
+function StudentKardex({
+  CI,
+  title = "Mi Kardex",
+  description = "Consulta tus faltas organizadas en tarjetas por trimestre.",
+  records,
+  canAddAbsences = false,
+  onAddAbsence,
+}: StudentKardexProps) {
+  const [form, setForm] = useState(initialForm);
+  const kardexRecords = records ?? (kardexData as KardexRecord[]);
+
   const recordsByTrimester = useMemo(
     () =>
       trimestres.map((trimestre) => ({
         ...trimestre,
-        records: (kardexData as KardexRecord[]).filter(
+        records: kardexRecords.filter(
           (record) => record.CI === CI && record.trimestre === trimestre.value
         ),
       })),
-    [CI]
+    [CI, kardexRecords]
   );
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!onAddAbsence) return;
+
+    onAddAbsence({
+      trimestre: Number(form.trimestre),
+      tipoFalta: form.tipoFalta.trim(),
+      descripcion: form.descripcion.trim(),
+      materia: form.materia.trim(),
+      fecha: form.fecha,
+    });
+
+    setForm(initialForm);
+  };
 
   return (
     <section className="student-kardex" aria-labelledby="student-kardex-title">
       <div className="student-kardex__header">
         <div>
           <span className="student-kardex__eyebrow">Registro académico</span>
-          <h2 id="student-kardex-title">Mi Kardex</h2>
+          <h2 id="student-kardex-title">{title}</h2>
         </div>
-        <p>Consulta tus faltas organizadas en tarjetas por trimestre.</p>
+        <p>{description}</p>
       </div>
+
+      {canAddAbsences && (
+        <form className="student-kardex__form" onSubmit={handleSubmit}>
+          <div className="student-kardex__form-header">
+            <span className="student-kardex__eyebrow">Nueva falta</span>
+            <h3>Añadir falta al estudiante</h3>
+          </div>
+
+          <label>
+            Trimestre
+            <select
+              value={form.trimestre}
+              onChange={(event) =>
+                setForm({ ...form, trimestre: Number(event.target.value) })
+              }
+              required
+            >
+              {trimestres.map((trimestre) => (
+                <option key={trimestre.value} value={trimestre.value}>
+                  {trimestre.label}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label>
+            Tipo de falta
+            <input
+              value={form.tipoFalta}
+              onChange={(event) =>
+                setForm({ ...form, tipoFalta: event.target.value })
+              }
+              placeholder="Ej. Leve, Grave, Inasistencia"
+              required
+            />
+          </label>
+
+          <label>
+            Materia
+            <input
+              value={form.materia}
+              onChange={(event) => setForm({ ...form, materia: event.target.value })}
+              placeholder="Ej. Matemática"
+              required
+            />
+          </label>
+
+          <label>
+            Fecha
+            <input
+              type="date"
+              value={form.fecha}
+              onChange={(event) => setForm({ ...form, fecha: event.target.value })}
+              required
+            />
+          </label>
+
+          <label className="student-kardex__form-description">
+            Descripción
+            <textarea
+              value={form.descripcion}
+              onChange={(event) =>
+                setForm({ ...form, descripcion: event.target.value })
+              }
+              placeholder="Describe la falta registrada"
+              required
+            />
+          </label>
+
+          <button type="submit">Guardar falta</button>
+        </form>
+      )}
 
       <div className="student-kardex__cards">
         {recordsByTrimester.map((trimestre) => (
