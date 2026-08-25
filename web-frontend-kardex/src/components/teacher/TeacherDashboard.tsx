@@ -1,12 +1,11 @@
 import { useMemo, useState } from "react";
-import usersData from "../../data/users.json";
 import kardexData from "../../data/kardex.json";
 import { storageService } from "../../services/storageService";
 import type { UserRecord } from "../../types/auth";
+import { authRepository } from "../../repositories/authRepository";
 import StudentKardex, { type KardexRecord } from "../student/StudentKardex";
 
 const EXTRA_KARDEX_KEY = "teacher_kardex_records";
-const students = (usersData as UserRecord[]).filter((user) => user.rol === "ALUMNO");
 const baseKardex = kardexData as KardexRecord[];
 
 function getFullName(student: UserRecord) {
@@ -14,6 +13,7 @@ function getFullName(student: UserRecord) {
 }
 
 function TeacherDashboard() {
+  const students = authRepository.getUsersByRole("ALUMNO") as UserRecord[];
   const [selectedCI, setSelectedCI] = useState(students[0]?.CI ?? "");
   const [extraRecords, setExtraRecords] = useState<KardexRecord[]>(
     () => storageService.get<KardexRecord[]>(EXTRA_KARDEX_KEY) ?? []

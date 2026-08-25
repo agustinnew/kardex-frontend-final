@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { authRepository } from "../repositories/authRepository";
 import StudentKardex from "../components/student/StudentKardex";
 import TeacherDashboard from "../components/teacher/TeacherDashboard";
+import AdminDashboard from "../components/admin/AdminDashboard";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -70,6 +71,8 @@ function HomePage() {
         </div>
       ) : user.rol === "PROFESOR" ? (
         <TeacherDashboard />
+      ) : user.rol === "ADMIN" ? (
+        <AdminDashboard />
       ) : (
         <section className="role-placeholder">
           <span>Panel de usuario</span>
